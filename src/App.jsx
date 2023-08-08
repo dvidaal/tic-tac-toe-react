@@ -1,7 +1,9 @@
+import "./app.css";
+
 const App = () => {
   return (
     <>
-      <div>HELLO WORLD</div>
+      <h1 className="main-title">Tic Tac Toe</h1>
     </>
   );
 };
