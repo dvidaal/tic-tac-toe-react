@@ -1,3 +1,11 @@
+.board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .main-title {
   font-size: 2rem;
   text-align: center;
@@ -7,4 +15,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
+}
+
+.tokens {
+  font-size: 3.5rem;
+  text-align: center;
 }
