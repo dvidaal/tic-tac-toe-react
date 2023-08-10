@@ -1,9 +1,16 @@
 import "./Square.css";
 
-const Square = ({ children, updatedBoard, index }) => {
+const Square = ({ children, isSelected, updateBoard, index }) => {
+  const selectedClass = `square ${isSelected ? "is-selected" : ""}`;
+
+  const handleClick = () => {
+    updateBoard(index);
+  };
   return (
     <>
-      <div className="square-board">{children}</div>
+      <div onClick={handleClick} className={selectedClass}>
+        {children}
+      </div>
     </>
   );
 };
