@@ -3,32 +3,23 @@ import { useState } from "react";
 import "./app.css";
 import Button from "./components/Button/Button";
 import Square from "./components/Square/Square";
-import { TURNS, WINNER_COMBOS } from "./constants";
+import { TURNS } from "./constants";
 import WinnerModal from "./components/WinnerModal/WinnerModal";
+import { checkEndGame, winnerCheck } from "./components/logic/board";
+import {
+  resetGameStorage,
+  saveGameToStorage,
+} from "./components/logic/storage";
 
 const App = () => {
-  const [board, setBoard] = useState(Array(9).fill(null));
+  const [board, setBoard] = useState(() => {
+    const boardFromStorage = window.localStorage.getItem("board");
+    if (boardFromStorage) return JSON.parse(boardFromStorage);
+    return Array(9).fill(null);
+  });
   const [turn, setTurn] = useState(TURNS.x);
   const [winner, setWinner] = useState(null);
   const [isDisable, setDisable] = useState(false);
-
-  const winnerCheck = (boardToCheck) => {
-    for (const combo of WINNER_COMBOS) {
-      const [a, b, c] = combo;
-      if (
-        boardToCheck[a] &&
-        boardToCheck[a] === boardToCheck[b] &&
-        boardToCheck[a] === boardToCheck[c]
-      ) {
-        return boardToCheck[a];
-      }
-    }
-    return null;
-  };
-
-  const checkEndGame = (newBoard) => {
-    return newBoard.every((square) => square !== null);
-  };
 
   const updateBoard = (index) => {
     const newBoard = [...board];
@@ -37,6 +28,10 @@ const App = () => {
     setBoard(newBoard);
     const newTurn = turn === TURNS.x ? TURNS.o : TURNS.x;
     setTurn(newTurn);
+    saveGameToStorage({
+      board: newBoard,
+      turn: newTurn,
+    });
     const newWinner = winnerCheck(newBoard);
     if (newWinner) {
       confetti();
@@ -53,6 +48,8 @@ const App = () => {
     setTurn(TURNS.x);
     setDisable(false);
     setWinner(null);
+
+    resetGameStorage();
   };
 
   return (
