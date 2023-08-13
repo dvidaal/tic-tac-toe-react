@@ -12,3 +12,14 @@
   color: black;
   font-weight: bold;
 }
+
+@media (max-width: 420px) {
+  .reset-game {
+    border-radius: 5px;
+    width: 50px;
+    height: 53px;
+    border: 2px solid #fff;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
