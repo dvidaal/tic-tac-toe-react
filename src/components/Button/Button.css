@@ -6,3 +6,9 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.reset-game:hover {
+  background-color: #fff;
+  color: black;
+  font-weight: bold;
+}

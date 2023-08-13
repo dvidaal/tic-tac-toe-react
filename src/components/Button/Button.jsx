@@ -1,13 +1,13 @@
 import "./Button.css";
 
-const Button = ({ resetGame }) => {
+const Button = ({ resetGame, text }) => {
   const handleClick = () => {
     resetGame();
   };
 
   return (
     <button onClick={handleClick} className="reset-game">
-      Reset Game
+      {text}
     </button>
   );
 };
