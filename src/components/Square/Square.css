@@ -11,8 +11,8 @@
 }
 
 .is-selected {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-color: transparent;
   background-color: rgb(78, 96, 215);
 }
